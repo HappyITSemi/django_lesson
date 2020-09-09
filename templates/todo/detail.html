@@ -1,0 +1,38 @@
+{% extends 'todo/base.html' %}
+{% load static %}
+{% block title %}Todo詳細{% endblock %}
+{% block content %}
+    <div class="col-lg-7 border order-2">
+            ▶Todo詳細表示
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>id</th>
+                    <td>{{ todo.pk }}</td>
+                </tr>
+                <tr>
+                    <th>Todo名</th>
+                    <td>{{ todo.title }}</td>
+                </tr>
+                <tr>
+                    <th>カテゴリー</th>
+                    <td> category_id</td>
+                </tr>
+                <tr>
+                    <th>内容</th>
+                    <td>{{ todo.description }}</td>
+                </tr>
+                <tr>
+                    <th>期日</th>
+                    <td>{{ todo.due_date|date:"Y-m-j" }}</td>
+                </tr>
+                <tr>
+                    <th>作成日</th>
+                    <td> {{ todo.created_at|date:"Y-m-j" }}</td>
+                </tr>
+                <tr>
+                    <th>更新日</th>
+                    <td> {{ todo.updated_at|date:"Y-m-j H:i:s" }}</td>
+                </tr>
+            </table>
+        </div>
+{% endblock %}

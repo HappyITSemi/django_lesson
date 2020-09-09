@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Todoインデックス{% endblock %}
+{% block content %}
+<div class="col-lg-7 border order-2">
+    ▶Todo一覧<hr/>
+    <a role="button" class="btn  btn-sm btn-outline-primary" href="{% url "todo:todo_create" %}">新規作成</a>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Todo名</th>
+                <th>カテゴリー</th>
+                <th>内容</th>
+                <th>期日</th>
+                <th>作成日</th>
+                <th>更新日</th>
+                <th>更新</th>
+                <th>削除</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for todo in object_list %}
+            <tr>
+                <td>{{ todo.pk }}</td>
+                <td><a href="{% url 'todo:todo_detail' todo.pk %}"> {{ todo.title }} </a></td>
+                <td>{{ todo.category.name }}</td>
+                <td>{{ todo.description }}</td>
+                <td>{{ todo.due_date|date:"Y-m-j" }}</td>
+                <td> {{ todo.created_at|date:"Y-m-j" }}</td>
+                <td> {{ todo.updated_at|date:"Y-m-j H:i:s" }}</td>
+                <td><a role="button" class="btn  btn-sm btn-outline-primary" href="{% url 'todo:todo_update' todo.pk %}">更新</a></td>
+                <td><a role="button" class="btn  btn-sm btn-outline-primary" href="{% url 'todo:todo_delete' todo.pk %}">削除</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    contextからのオブジェクトを利用したselectの作成例<br>
+
+    <select id="category_id" name="category" class="form-select" aria-label="カテゴリー">
+        <option selected>カテゴリーの選択</option>
+        {% for cat in categories %}
+            <option value="{{ cat.name }}">{{ cat }}</option>
+        {% endfor %}
+    </select>
+
+</div>
+{% endblock %}

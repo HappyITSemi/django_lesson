@@ -1,0 +1,24 @@
+{% extends 'todo/base.html' %}
+{% load static %}
+{% block title %}Todo削除確認{% endblock %}
+{% block content %}
+   <div class="col-lg-7 border order-2">
+        ▶Todo 削除・確認
+        <hr/>
+        <form method="post" action="{% url 'todo:todo_delete' todo.pk %}">
+            {% csrf_token %}
+            {{ form_non_field_errors }}
+            <table class="table table-sm table-striped">
+                <tr><th>id</th><td>{{ object.pk }}</td></tr>
+                <tr><th>Todo名</th><td>{{ object.title }}</td></tr>
+                <tr><th>内容</th><td>{{ object.description }}</td></tr>
+                <tr><th>期限</th><td>{{ object.due_date|date:"Y-m-j H:i:s" }}</td></tr>
+                <tr><th>作成日時</th><td>{{ todo.created_at|date:"Y-m-j H:i:s" }}</td></tr>
+                <tr><th>更新日時</th><td> {{ todo.updated_at|date:"Y-m-j H:i:s" }}</td></tr>
+            </table>
+            <button type="submit" class="btn btn-sm btn-primary">削除</button>
+            <a role="button" class="btn  btn-sm btn-outline-primary" href="{% url 'todo:todo_index' %}">一覧</a>
+        </form>
+        <br/>
+    </div>
+{% endblock %}
