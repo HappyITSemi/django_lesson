@@ -1,15 +1,15 @@
 {% extends './base.html' %}
 {% load static %}
-{% block title %}Todo-Update{% endblock %}
+{% block title %}Todo更新{% endblock %}
 {% block content %}
     <div class="col-lg-7 border order-2">
         ▶Todo 更新 {{ todo.pk }}
         <hr/>
-        <form method="post">
+        <form method="post" action="{% url 'todo:todo_update' todo.pk %}">
             {% csrf_token %}
             {{ form_non_field_errors }}
             {{ form.as_table }}
             <input type="submit" class="btn btn-sm btn-primary" value="更新">
-        <br/>
+            <br/>
     </div>
 {% endblock %}

@@ -12,9 +12,7 @@ from todo.models import Todo, Category
 class TodoIndexView(ListView):
     model = Todo
     template_name = 'todo/index.html'
-    paginate_by = 10
-
-    # queryset = Todo.objects.all()
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
@@ -45,13 +43,13 @@ class TodoUpdateView(UpdateView):
     form_class = TodoForm
     success_url = reverse_lazy('todo:todo_index')
 
-    def form_valid(self, form):
-        messages.success(self.request, 'Todoを更新しました。')
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        messages.error(self.request, "Todoの更新に失敗しました。")
-        return super().form_invalid(form)
+    # def form_valid(self, form):
+    #     messages.success(self.request, 'Todoを更新しました。')
+    #     return redirect(self.get_success_url())
+    #
+    # def form_invalid(self, form):
+    #     messages.error(self.request, "Todoの更新に失敗しました。")
+    #     return super().form_invalid(form)
 
 
 class TodoDeleteView(DeleteView):

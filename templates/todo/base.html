@@ -54,6 +54,10 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/envelope.svg' %}" alt="" width="24" height="24"/>
                     　メニュー5</a>
+
+                    <a role="button" class="btn  btn-sm btn-outline-primary" href="{% url 'account_login' %}">ログイン</a>
+                    <a role="button" class="btn  btn-sm btn-outline-secondary" href="{% url 'account_logout' %}">ログアウト</a>
+
             </div>
         </div>
         {% block content %}
