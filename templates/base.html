@@ -11,7 +11,7 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="btn-group mr-2" role="group" aria-label="login-logout">
-            <a class="navbar-brand">Django Lesson</a>
+            <a class="navbar-brand"  href="{% url 'home' %}">Django Lesson</a>
             <a role="button" class="btn  btn-sm btn-primary" href="{% url "account_login" %}">ログイン</a>
             <a role="button" class="btn  btn-sm btn-secondary" href="{% url "account_logout" %}">ログアウト</a>
         </div>

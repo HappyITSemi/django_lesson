@@ -10,7 +10,7 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand">Django Lesson</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Django Lesson</a>
         <form class="d-flex">
             <div class="btn-group" role="group" aria-label="login-user">
                 <button type="button" class="btn btn-sm btn-success">LoginUser</button>
@@ -32,7 +32,7 @@
         <div class="col-lg-2 order-1">
             <div class="list-group">
                 {% block todo_menu %}
-                    <a href="{% url 'todo:todo_index' %}" class="list-group-item list-group-item-action">
+                    <a href="{% url 'todo:todo_index' %}" class="list-group-item list-group-item-action active">
                         <img src="/static/bootstrap-icons/icons/layout-text-window-reverse.svg" alt="" width="24"
                              height="24"/>
                         　Todo

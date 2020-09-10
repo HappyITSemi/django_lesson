@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends './base.html' %}
 {% load static %}
 {% block title %}Todo-Create{% endblock %}
 {% block content %}
@@ -27,7 +27,7 @@
                     <td>{{ todo.category.name }}</td>
                     <td>{{ todo.description }}</td>
                     <td>{{ todo.due_date|date:"Y-m-j H:i:s" }}</td>
-                    <td> {{ todo.created_at|date:"Y-m-j" }}</td>
+                    <td> {{ todo.created_at|date:"Y-m-j H:i:s" }}</td>
                     <td> {{ todo.updated_at|date:"Y-m-j H:i:s" }}</td>
                     <td>
                         <button type="submit" class="btn btn-sm btn-outline-primary">更新</button>

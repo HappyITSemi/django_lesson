@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Home-インデックス{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
 <div class="col-lg-7 border order-2">
-<br/>
-<br/>{{ message }}<br/>
-<img src="/static/images/Python-Django-1.png" width="80%" alt="django-start"><br/>
-■model変更時のマイグレーション<br/>
-①python manage.py makemigrations アプリ<br/>
-②python manage.py migrate<br/>
-
+<a href="{%  url 'todo:todo_index' %}" class="btn btn-primary">Todo一覧</a><br/>
+  <img src="/static/images/django-cover.png" class="img-fluid" alt="django-start">
 </div>
 {% endblock %}
 

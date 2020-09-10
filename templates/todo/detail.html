@@ -1,4 +1,4 @@
-{% extends 'todo/base.html' %}
+{% extends './base.html' %}
 {% load static %}
 {% block title %}Todo詳細{% endblock %}
 {% block content %}
@@ -23,11 +23,11 @@
                 </tr>
                 <tr>
                     <th>期日</th>
-                    <td>{{ todo.due_date|date:"Y-m-j" }}</td>
+                    <td>{{ todo.due_date|date:"Y-m-j H:i:s" }}</td>
                 </tr>
                 <tr>
                     <th>作成日</th>
-                    <td> {{ todo.created_at|date:"Y-m-j" }}</td>
+                    <td> {{ todo.created_at|date:"Y-m-j H:i:s" }}</td>
                 </tr>
                 <tr>
                     <th>更新日</th>

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends './base.html' %}
 {% load static %}
 {% block title %}Todoインデックス{% endblock %}
 {% block content %}
@@ -13,8 +13,8 @@
                 <th>カテゴリー</th>
                 <th>内容</th>
                 <th>期日</th>
-                <th>作成日</th>
-                <th>更新日</th>
+                <th>作成日<br/>
+                更新日</th>
                 <th>更新</th>
                 <th>削除</th>
             </tr>
@@ -27,15 +27,15 @@
                 <td>{{ todo.category.name }}</td>
                 <td>{{ todo.description }}</td>
                 <td>{{ todo.due_date|date:"Y-m-j" }}</td>
-                <td> {{ todo.created_at|date:"Y-m-j" }}</td>
-                <td> {{ todo.updated_at|date:"Y-m-j H:i:s" }}</td>
+                <td> {{ todo.created_at|date:"Y-m-j" }}<br/>
+                 {{ todo.updated_at|date:"Y-m-j" }}</td>
                 <td><a role="button" class="btn  btn-sm btn-outline-primary" href="{% url 'todo:todo_update' todo.pk %}">更新</a></td>
                 <td><a role="button" class="btn  btn-sm btn-outline-primary" href="{% url 'todo:todo_delete' todo.pk %}">削除</a></td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
-
+<br/>
     contextからのオブジェクトを利用したselectの作成例<br>
 
     <select id="category_id" name="category" class="form-select" aria-label="カテゴリー">
