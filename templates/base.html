@@ -10,7 +10,11 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand">Django Lesson</a>
+        <div class="btn-group mr-2" role="group" aria-label="login-logout">
+            <a class="navbar-brand">Django Lesson</a>
+            <a role="button" class="btn  btn-sm btn-primary" href="{% url "account_login" %}">ログイン</a>
+            <a role="button" class="btn  btn-sm btn-secondary" href="{% url "account_logout" %}">ログアウト</a>
+        </div>
         <form class="d-flex">
             <div class="btn-group" role="group" aria-label="login-user">
               <button type="button" class="btn btn-sm btn-success">LoginUser</button>

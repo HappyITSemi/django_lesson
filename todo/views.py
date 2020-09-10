@@ -59,3 +59,4 @@ class TodoDeleteView(DeleteView):
     template_name = "todo/delete.html"
     form_class = TodoForm
     success_url = reverse_lazy('todo:todo_index')
+
