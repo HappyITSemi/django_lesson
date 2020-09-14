@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+= Todoアプリ作成
 == 目次
 . PyCharmでプロジェクト開始するまで
 . データベースを準備
@@ -10,7 +10,6 @@
 =======
 == 【プロジェクト開始の準備】
 
->>>>>>> origin/master
 |===
 |操作内容|操作 |説明
 
@@ -30,7 +29,6 @@
 |④Djangoをインストール, Update
 |$ python -m django --version
 |バージョン確認：Pythonコンソールを起動して +
- >>> django.get_version()
 
 |⑤仮想環境を作成、アクティベートする
 |$ python3 -m venv venv +
@@ -63,10 +61,9 @@ Djangoを選択、作成する。
  MySQL：
 |*
 |===
-<<<<<<< HEAD
 === （2）データベース
 =======
 
 === Lesson-1 作成アプリ概要
 == 作成画面
->>>>>>> origin/master
+
