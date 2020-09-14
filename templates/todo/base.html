@@ -16,7 +16,7 @@
                 <button type="button" class="btn btn-sm btn-success">LoginUser</button>
                 <button type="button" class="btn btn-sm btn-outline-success">
                     {% if user.is_authenticated %}
-                        ({{ user.get_userid }})/{{ user.get_username }}
+                        {{ user.get_username }}
                     {% else %}-
                     {% endif %}
                 </button>

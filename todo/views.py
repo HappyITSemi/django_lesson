@@ -23,8 +23,6 @@ class TodoIndexView(ListView):
         return context
 
     def get_queryset(self):
-        print(self.request.user.id)
-        print(self.request.user)
         object_list = Todo.objects.filter(user=self.request.user).order_by('todo.id').all()
         return object_list
 
@@ -43,14 +41,14 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         todo = form.save(commit=False)
-        todo.user = self.request.user
+        todo.user = self.request.user  # Login-userをセットする
         print(self.request.user)
         todo.save()
-        messages.success(self.request, 'Todoを作成しました。')
+        messages.success(self.request, 'Todoを新規作成しました。')
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, "Todoの作成に失敗しました。")
+        messages.error(self.request, "Todoの新規作成に失敗しました。")
         return super().form_invalid(form)
 
 
@@ -60,6 +58,17 @@ class TodoUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "todo/update.html"
     success_url = reverse_lazy('todo:todo_index')
 
+    def get_success_url(self):
+        return reverse_lazy('todo:todo_detail', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Todoを更新しました。')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Todoの更新に失敗しました。")
+        return super().form_invalid(form)
+
 
 class TodoDeleteView(DeleteView):
     model = Todo
@@ -67,5 +76,6 @@ class TodoDeleteView(DeleteView):
     template_name = "todo/delete.html"
     success_url = reverse_lazy('todo:todo_index')
 
-    def post(self, request, *args, **kwargs):
-        user = self.request.user
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, "Todoを削除しました。")
+        return super().delete(request, *args, **kwargs)
