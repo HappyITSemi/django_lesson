@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 == 目次
 . PyCharmでプロジェクト開始するまで
 . データベースを準備
@@ -28,7 +29,6 @@
 |④Djangoをインストール, Update
 |$ python -m django --version
 |バージョン確認：Pythonコンソールを起動して +
- >>> django.get_version()
 
 |⑤仮想環境を作成、アクティベートする
 |$ python3 -m venv venv +
