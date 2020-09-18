@@ -64,7 +64,7 @@ Djangoを選択、作成する。
 [source, bash]
 pip freeze # インストールソフト確認
 pip list -o # アップグレードすべきソフトの一覧
-pip install -U <ソフト＞ # ソフトウェアのアップグレード
+pip install -U <ソフト> # ソフトウェアのアップグレード
 
 
 === （2）データベース
