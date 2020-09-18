@@ -1,4 +1,4 @@
-image::static/images/django_start_画面.png[]
+image::static/images/django-cover.png[]
 == 目次
 . PyCharmでプロジェクト開始するまで
 . データベースを準備
@@ -66,8 +66,12 @@ pip freeze # インストールソフト確認
 pip list -o # アップグレードすべきソフトの一覧
 pip install -U <ソフト> # ソフトウェアのアップグレード
 
-
-=== （2）データベース
-=== Lesson-1 作成アプリ概要
+=== Lesson-1 Todoアプリ開発
 == 作成画面
-
+image::static/images/django_start_画面.png[]
+== 画面遷移図
+image::static/images/画面遷移図.png[]
+== Todoテーブル
+image::static/images/django-table.png[]
+== テーブル一覧
+image::static/images/django_all_tables.png[]
