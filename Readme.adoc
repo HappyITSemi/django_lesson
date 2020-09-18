@@ -57,7 +57,7 @@ Djangoを選択、作成する。
 
 |⑩データベースのドライバーをインストールする。
 |PostgreSQL: $ pip install psycopg2-binary +
- MySQL：
+ MySQL： 後出
 |*
 |===
 ・インストールソフト・バージョンの確認
