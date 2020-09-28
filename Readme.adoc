@@ -1,3 +1,4 @@
+image::static/images/django-cover.png[]
 == 目次
 . PyCharmでプロジェクト開始するまで
 . データベースを準備
@@ -6,8 +7,7 @@
 . Bootstrap5で画面作成
 
 == （1）PyCharmでプロジェクト開始するまで
-=======
-== 【プロジェクト開始の準備】
+=== 【プロジェクト開始の準備】
 
 |===
 |操作内容|操作 |説明
@@ -57,13 +57,21 @@ Djangoを選択、作成する。
 
 |⑩データベースのドライバーをインストールする。
 |PostgreSQL: $ pip install psycopg2-binary +
- MySQL：
+ MySQL： 後出
 |*
 |===
+・インストールソフト・バージョンの確認
+[source, bash]
+pip freeze # インストールソフト確認
+pip list -o # アップグレードすべきソフトの一覧
+pip install -U <ソフト> # ソフトウェアのアップグレード
 
-=== （2）データベース
-=======
-
-=== Lesson-1 作成アプリ概要
+=== Lesson-1 Todoアプリ開発
 == 作成画面
-
+image::static/images/django_start_画面.png[]
+== 画面遷移図
+image::static/images/画面遷移図.png[]
+== Todoテーブル
+image::static/images/django-table.png[]
+== テーブル一覧
+image::static/images/django_all_tables.png[]
