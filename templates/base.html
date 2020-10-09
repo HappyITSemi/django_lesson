@@ -10,20 +10,20 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home' %}">Django Lesson</a>
-    <form class="d-flex md-7">
-        <div class="btn-group" role="group" aria-label="login-user">
-            <button type="button" class="btn btn-sm btn-success">User</button>
-            <button type="button" class="btn btn-sm btn-outline-success">
-                {% if user.is_authenticated %}
-                    ({{ user.get_userid }})/{{ user.get_username }}
-                {% else %}-
-                {% endif %}
-            </button>
-        </div>
-        <input class="form-control mr-3" type="search" placeholder="検索ワードの入力" aria-label="検索">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+        <a class="navbar-brand" href="{% url 'home' %}">Django Lesson</a>
+        <form class="d-flex md-7">
+            <div class="btn-group" role="group" aria-label="login-user">
+                <button type="button" class="btn btn-sm btn-success">User</button>
+                <button type="button" class="btn btn-sm btn-outline-success">
+                    {% if user.is_authenticated %}
+                        ({{ user.get_userid }})/{{ user.get_username }}
+                    {% else %}-
+                    {% endif %}
+                </button>
+            </div>
+            <input class="form-control mr-3" type="search" placeholder="検索ワードの入力" aria-label="検索">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
     </div>
 </nav>
 <div class="container-fluid">
@@ -31,6 +31,9 @@
         <div>　</div>
         <div class="col-lg-2 order-1">
             <div class="list-group">
+                <ul class="list-group nav" id="menu-all" role="tablist">
+                    <li class="list-group-item list-group-item-success">基本</li>
+                </ul>
                 {% block todo_menu %}
                     <a href="{% url 'todo:todo_index' %}" class="list-group-item list-group-item-action">
                         <img src="/static/bootstrap-icons/icons/layout-text-window-reverse.svg" alt="" width="24"
@@ -45,18 +48,29 @@
                         　SNS - Post</a>
                 {% endblock %}
 
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="{% url 'plot:plot_index' %}" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/diagram-3.svg' %}" alt="" width="24" height="24"/>
-                    　メニュー3</a>
+                    　OpenCV 画像処理</a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/person-plus.svg' %}" alt="" width="24" height="24"/>
                     　メニュー4</a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/envelope.svg' %}" alt="" width="24" height="24"/>
                     　メニュー5</a>
-                    <a role="button" class="btn  btn-sm btn-outline-primary" href="/accounts/login">ログイン</a>
-                    <a role="button" class="btn  btn-sm btn-outline-secondary" href="/accounts/logout">ログアウト</a>
-
+                <a role="button" class="btn  btn-sm btn-outline-primary" href="/accounts/login">ログイン</a>
+                <a role="button" class="btn  btn-sm btn-outline-secondary" href="/accounts/logout">ログアウト</a>
+            </div>
+        <hr>
+            <div>
+                <ul class="list-group nav" id="menu-all" role="tablist">
+                    <li class="list-group-item list-group-item-success">発展</li>
+                    <li class="list-group-item list-group-item-secondary">可視化・グラフ</li>
+                    <li class="list-group-item list-group-item-secondary">回帰</li>
+                    <li class="list-group-item list-group-item-secondary">分類</li>
+                    <li class="list-group-item list-group-item-secondary">解析</li>
+                    <li class="list-group-item list-group-item-secondary">NN</li>
+                    <li class="list-group-item list-group-item-secondary">GA</li>
+                </ul>
             </div>
         </div>
         {% block content %}
@@ -103,5 +117,3 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
-
-

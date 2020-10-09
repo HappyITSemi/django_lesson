@@ -1,0 +1,27 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}Plotインデックス{% endblock %}
+{% block content %}
+    <div class="col-lg-7 border order-2">
+        <div class="card-group">
+            <div class="card">
+                <img src="/media/images/face.jpg" class="card-img-top" alt="'face-pic"/>
+                <div class="card-body">顔認識</div>
+            </div>
+            <div class="card">
+                <img src="/media/images/gray.jpg" class="card-img-top" alt="'gray-pic"/>
+                <div class="card-body">グレースケール</div>
+            </div>
+        </div>
+        <div class="card-group">
+            <div class="card">
+                <img src="/media/images/bw.jpg" class="card-img-top" alt="'bw-pic"/>
+                <div class="card-body">輪郭</div>
+            </div>
+            <div class="card">
+                <img src="/media/images/output.jpg" class="card-img-top" alt="cover"/>
+                <div class="card-body">画像表示</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -8,6 +8,9 @@ image::static/images/django-cover.png[]
 
 == （1）PyCharmでプロジェクト開始するまで
 === 【プロジェクト開始の準備】
+==== （追記）プロジェクト名を変更したい場合には
+. git clone [リポジトリURL] プロジェクト名
+. git clone https://github.com/HappyITSemi/django_lesson.git new_project名
 
 |===
 |操作内容|操作 |説明

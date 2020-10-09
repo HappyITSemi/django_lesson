@@ -16,10 +16,12 @@ class TodoIndexView(ListView):
     model = Todo
     template_name = 'todo/index.html'
     paginate_by = 3
+    logger.info('-- todo view index ---')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['categories'] = Category.objects.order_by('pk').all()
+        logger.info('-- todo index get_context_data ---')
         return context
 
     def get_queryset(self):

@@ -19,8 +19,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo/', include('todo.urls')),
     path('accounts/', include('allauth.urls')),
-]
-# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('plot/', include('plot.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 if settings.DEBUG:

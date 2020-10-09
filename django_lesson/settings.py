@@ -17,7 +17,6 @@ from django.contrib import messages
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
 
     'todo.apps.TodoConfig',
     'accounts.apps.AccountsConfig',
+    'plot.apps.PlotConfig',
 
     'django.contrib.sites',
     'allauth',
@@ -80,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_lesson.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -98,7 +97,6 @@ DATABASES = {
         'POST': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -118,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -134,12 +131,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
@@ -148,38 +144,58 @@ STATICFILES_DIRS = (
 
 # ロギング設定
 LOGGING = {
-    'version': 1,  # 1固定
+    'version': 1,
     'disable_existing_loggers': False,
 
+    'formatters': {
+
+        'standard': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'debug.log',
+            'maxBytes': 50000,
+            'backupCount': 2,
+            'formatter': 'standard',
+        },
+        'console': {
+
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+    },
     'loggers': {
+        # 'django': {
+        #     'handlers': ['file'],
+        #     'level': 'DEBUG',
+        #     'propagate': True,
+        # },
         'django': {
             'handlers': ['console'],
-            'level': 'INFO',
+            'level': 'DEBUG',
         },
         'todo': {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
-    },
-
-    'handlers': {
-        'console': {
+        'plot': {
+            'handlers': ['console'],
             'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'dev'
         },
-    },
+        'main': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
 
-    'formatters': {
-        'dev': {
-            'format': '\t'.join([
-                '%(asctime)s',
-                '[%(levelname)s]',
-                '%(pathname)s(Line:%(lineno)d)',
-                '%(message)s'
-            ])
-        },
-    }
+        }
+    },
 }
 
 # pip install django-debug-toolbar
@@ -187,6 +203,7 @@ LOGGING = {
 if DEBUG:
     def show_toolbar(request):
         return True
+
 
     INSTALLED_APPS += ('debug_toolbar',)
     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
@@ -229,4 +246,3 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 DEFAULT_FROM_EMAIL = 'admin@example.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
