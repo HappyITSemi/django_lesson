@@ -38,14 +38,14 @@
                     <a href="{% url 'todo:todo_index' %}" class="list-group-item list-group-item-action active">
                         <img src="/static/bootstrap-icons/icons/layout-text-window-reverse.svg" alt="" width="24"
                              height="24"/>
-                        　Todo
+                        　Todo(1対多)
                     </a>
                 {% endblock %}
 
                 {% block sns_menu %}
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="{% url 'sns:sns_index' %}" class="list-group-item list-group-item-action">
                         <img src="{% static 'bootstrap-icons/icons/shop.svg' %}" alt="" width="24" height="24"/>
-                        　SNS - Post</a>
+                        　SNS(多対多)</a>
                 {% endblock %}
 
                 <a href="{% url 'plot:plot_index' %}" class="list-group-item list-group-item-action">

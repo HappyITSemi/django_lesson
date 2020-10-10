@@ -20,6 +20,7 @@ urlpatterns = [
     path('todo/', include('todo.urls')),
     path('accounts/', include('allauth.urls')),
     path('plot/', include('plot.urls')),
+    path('sns/', include('sns.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

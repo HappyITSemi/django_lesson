@@ -2,6 +2,7 @@
 import logging
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView, TemplateView
@@ -12,6 +13,7 @@ from todo.models import Todo, Category
 logger = logging.getLogger(__name__)
 
 
+# @login_required
 class TodoIndexView(ListView):
     model = Todo
     template_name = 'todo/index.html'

@@ -1,0 +1,23 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}sns削除確認{% endblock %}
+{% block content %}
+   <div class="col-lg-7 border order-2">
+        ▶Todo 削除・確認
+        <hr/>
+        <form method="post" action="{% url 'sns:sns_delete' sns.pk %}">
+            {% csrf_token %}
+            {{ form_non_field_errors }}
+            <table class="table table-sm table-striped">
+                <tr><th>id</th><td>{{ object.pk }}</td></tr>
+                <tr><th>タイトル</th><td>{{ object.title }}</td></tr>
+                <tr><th>投稿内容</th><td>{{ object.description }}</td></tr>
+                <tr><th>作成日時</th><td>{{ todo.created_at|date:"Y-m-j H:i:s" }}</td></tr>
+                <tr><th>更新日時</th><td> {{ todo.updated_at|date:"Y-m-j H:i:s" }}</td></tr>
+            </table>
+            <button type="submit" class="btn btn-sm btn-primary">削除</button>
+            <a role="button" class="btn  btn-sm btn-outline-primary" href="{% url 'sns:sns_index' %}">一覧</a>
+        </form>
+        <br/>
+    </div>
+{% endblock %}

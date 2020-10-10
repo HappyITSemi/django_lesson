@@ -1,0 +1,30 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}SNS詳細{% endblock %}
+{% block content %}
+    <div class="col-lg-7 border order-2">
+            ▶Todo詳細表示
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>id</th>
+                    <td>{{ sns.pk }}</td>
+                </tr>
+                <tr>
+                    <th>タイトル</th>
+                    <td>{{ sns.title }}</td>
+                </tr>
+                <tr>
+                    <th>投稿内容</th>
+                    <td>{{ sns.description }}</td>
+                </tr>
+                <tr>
+                    <th>作成日</th>
+                    <td> {{ sns.created_at|date:"Y-m-j H:i:s" }}</td>
+                </tr>
+                <tr>
+                    <th>更新日</th>
+                    <td> {{ sns.updated_at|date:"Y-m-j H:i:s" }}</td>
+                </tr>
+            </table>
+        </div>
+{% endblock %}
