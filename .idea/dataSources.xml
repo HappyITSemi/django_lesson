@@ -27,5 +27,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="postgresql_db3@localhost" uuid="544c2d3f-c4a8-45e7-b0ac-fe9838a3dffa">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgresql_db3</jdbc-url>
+    </data-source>
   </component>
 </project>

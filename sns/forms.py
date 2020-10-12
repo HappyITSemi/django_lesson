@@ -1,11 +1,10 @@
 # sns
 from django import forms
 
-from sns.models import Mention
+from sns.models import Sns
 
 
-class MentionForm(forms.ModelForm):
+class SnsForm(forms.ModelForm):  # mentiionForm
     class Meta:
-        model = Mention
+        model = Sns
         fields = ('me', 'title', 'description')
-

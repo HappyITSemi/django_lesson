@@ -3,7 +3,7 @@
 {% block title %}Todoインデックス{% endblock %}
 {% block content %}
     <div class="col-lg-7 border order-2">
-        ▶Todo一覧<br/>
+        SNS一覧<br/>
         {% if messages %}
             {% for message in messages %}
             {{ message }}<br/>
@@ -25,12 +25,11 @@
             </tr>
             </thead>
             <tbody>
-            {% for mention in object_list %}
+            {% for sns in object_list %}
                 <tr>
                     <td>{{ sns.pk }}</td>
-                    <td><a href="{% url 'sns:sns_detail' sns.pk %}"> {{ sns.name }} </a></td>
+                    <td><a href="{% url 'sns:sns_detail' sns.pk %}"> {{ sns.title }} </a></td>
                     <td>{{ sns.description }}</td>
-                    <td>{{ sns.due_date|date:"Y-m-j" }}</td>
                     <td> {{ sns.created_at|date:"Y-m-j" }}<br/>
                         {{ sns.updated_at|date:"Y-m-j" }}</td>
                     <td><a role="button" class="btn  btn-sm btn-outline-primary"

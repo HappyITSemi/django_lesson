@@ -1,0 +1,17 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}SNS更新{% endblock %}
+{% block content %}
+    <div class="col-lg-7 border order-2">
+        ▶Todo 更新 {{ sns.pk }}
+        <hr/>
+        <form method="post" action="{% url 'sns:sns_update' todo.pk %}">
+            {% csrf_token %}
+            {{ form_non_field_errors }}
+             <table class="table table-bordered table-sm table-striped">
+            {{ form.as_table }}
+             </table>
+            <input type="submit" class="btn btn-sm btn-primary" value="更新">
+            <br/>
+    </div>
+{% endblock %}

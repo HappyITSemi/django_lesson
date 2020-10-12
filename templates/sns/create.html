@@ -1,9 +1,9 @@
 {% extends './base.html' %}
 {% load static %}
-{% block title %}Todo新規作成{% endblock %}
+{% block title %}SNS投稿・新規作成{% endblock %}
 {% block content %}
     <div class="col-lg-7 border order-2">
-        ▶Todo 新規作成
+        ▶SNS 新規・投稿作成
         <hr/>
         <form method="POST" action="{% url 'sns:sns_create' %}">
             {% csrf_token %}

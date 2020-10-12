@@ -7,11 +7,12 @@ from django.utils import timezone
 from accounts.models import CustomUser
 
 
-class Sns(models.Model):
+class Sns(models.Model):  # sns_mention
     class Meta:
         managed = True
         db_table = 'sns'
         verbose_name_plural = 'sns'
+
     # user=me
     me = models.ForeignKey(CustomUser, verbose_name='自分・ユーザー', on_delete=models.CASCADE, related_name='sns_me')
     title = models.CharField(verbose_name='タイトル', blank=False, max_length=32)
@@ -52,4 +53,3 @@ class LikeOn(models.Model):
 
     sns = models.ManyToManyField(Sns, verbose_name='メンション')
     like_up = models.BooleanField(default=False)
-
