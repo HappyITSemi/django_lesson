@@ -14,25 +14,27 @@ logger = logging.getLogger(__name__)
 class SnsIndexView(ListView):
     model = Sns
     template_name = 'sns/index.html'
-    paginate_by = 3
+    paginate_by = 5
     logger.info('-- sns view index ---')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        # context['me'] =
+        context['me'] = self.request.user
         # context['friends'] =
         logger.info('-- sns index get_context_data ---')
         return context
 
 
 def get_queryset(self):
-    object_list = Sns.objects.filter(user=self.request.user).order_by('sns.id').all()
+    object_list = Sns.objects.order_by('pk').all()
+    # object_list = Sns.objects.filter(user=self.request.user).order_by('-sns.pk').all()
     return object_list
 
 
 class SnsDetailView(DetailView):
     model = Sns
     form_class = SnsForm
+    logger.info('--- sns list view ---1-')
     template_name = 'sns/detail.html'
 
 
@@ -47,7 +49,7 @@ class SnsCreateView(CreateView):
         sns = form.save(commit=False)
         sns.user = self.request.user  # Login-userをセットする
         logger.info('--- sns create view ---2-')
-        logger.info(self.request.user)
+        sns.me = self.request.user
         sns.save()
         messages.success(self.request, 'SNSを新規作成しました。')
         return super().form_valid(form)
@@ -65,6 +67,13 @@ class SnsUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('sns:sns_detail', kwargs={'pk': self.kwargs['pk']})
+
+
+class SnsCommentView(UpdateView):
+    model = Sns  # mention
+    # form_class = SnsCommentForm
+    template_name = "sns/comment.html"
+    success_url = reverse_lazy('sns:sns_index')
 
 
 class SnsDeleteView(DeleteView):

@@ -38,7 +38,7 @@
                     <a href="{% url 'todo:todo_index' %}" class="list-group-item list-group-item-action active">
                         <img src="/static/bootstrap-icons/icons/layout-text-window-reverse.svg" alt="" width="24"
                              height="24"/>
-                        　Todo(1対多)
+                        　Todo(1対1,多)
                     </a>
                 {% endblock %}
 
@@ -51,12 +51,12 @@
                 <a href="{% url 'plot:plot_index' %}" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/diagram-3.svg' %}" alt="" width="24" height="24"/>
                     　OpenCV 画像処理</a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="#" class="list-group-item list-group-item-secondary">
                     <img src="{% static 'bootstrap-icons/icons/person-plus.svg' %}" alt="" width="24" height="24"/>
-                    　メニュー4</a>
-                <a href="#" class="list-group-item list-group-item-action">
+                    　Rest-API</a>
+                <a href="#" class="list-group-item list-group-item-secondary">
                     <img src="{% static 'bootstrap-icons/icons/envelope.svg' %}" alt="" width="24" height="24"/>
-                    　メニュー5</a>
+                    　クローリング</a>
 
                 <a role="button" class="btn  btn-sm btn-outline-primary" href="/accounts/login">ログイン</a>
                 <a role="button" class="btn  btn-sm btn-outline-secondary" href="/accounts/logout">ログアウト</a>
@@ -67,7 +67,7 @@
             <div>
                 <ul class="list-group nav" id="menu-all" role="tablist">
                     <li class="list-group-item list-group-item-success">発展</li>
-                    <li class="list-group-item list-group-item-secondary">可視化・グラフ</li>
+                    <li class="list-group-item list-group-item-secondary">可視化</li>
                     <li class="list-group-item list-group-item-secondary">回帰</li>
                     <li class="list-group-item list-group-item-secondary">分類</li>
                     <li class="list-group-item list-group-item-secondary">解析</li>

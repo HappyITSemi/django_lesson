@@ -1,7 +1,11 @@
 # マイグレーション
 # $ python3 manage.py makemigrations
 # $ python3 manage.py migrate
+# from imagekit.models import ImageSpecField, ProcessedImageField
+# from imagekit.processors import ResizeToFill
+#
 
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
 from accounts.models import CustomUser
@@ -16,7 +20,11 @@ class Sns(models.Model):  # sns_mention
     # user=me
     me = models.ForeignKey(CustomUser, verbose_name='自分・ユーザー', on_delete=models.CASCADE, related_name='sns_me')
     title = models.CharField(verbose_name='タイトル', blank=False, max_length=32)
-    description = models.CharField(verbose_name='内容', null=False, blank=False, max_length=128)
+    description = models.TextField(verbose_name='内容', null=False, blank=False, max_length=128)
+    post_image = models.ImageField(
+        upload_to='images/', verbose_name='投稿画像',
+        validators=[FileExtensionValidator(['png', ])],
+        blank=True, null=True)
     like_count = models.IntegerField(verbose_name='いいね数', default=0, null=False)
     comment_count = models.IntegerField(verbose_name='コメント数', default=0, null=False)
 
@@ -53,3 +61,18 @@ class LikeOn(models.Model):
 
     sns = models.ManyToManyField(Sns, verbose_name='メンション')
     like_up = models.BooleanField(default=False)
+
+
+class SnsComment(models.Model):
+    class Meta:
+        managed = True
+        db_table = 'sns_comment'
+
+    # mention_id
+    iam = models.ForeignKey(CustomUser, related_name='comments', on_delete=models.CASCADE)  # it's me
+    sns = models.ForeignKey(Sns, on_delete=models.CASCADE)  # mention_id
+    comment = models.TextField(verbose_name='コメント')
+
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='登録日時')
+    updated_at = models.DateTimeField(default=timezone.now, verbose_name='更新日時')
+

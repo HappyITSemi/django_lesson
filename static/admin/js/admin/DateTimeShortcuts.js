@@ -107,7 +107,7 @@
                 return true;
             };
 
-            // Shortcut links (clock icon and "Now" link)
+            // Shortcut links (clock profile_icons and "Now" link)
             var shortcuts_span = document.createElement('span');
             shortcuts_span.className = DateTimeShortcuts.shortCutsClass;
             inp.parentNode.insertBefore(shortcuts_span, inp.nextSibling);
@@ -130,7 +130,7 @@
 
             quickElement(
                 'span', clock_link, '',
-                'class', 'clock-icon',
+                'class', 'clock-profile_icons',
                 'title', gettext('Choose a Time')
             );
             shortcuts_span.appendChild(document.createTextNode('\u00A0'));
@@ -240,7 +240,7 @@
                 return true;
             };
 
-            // Shortcut links (calendar icon and "Today" link)
+            // Shortcut links (calendar profile_icons and "Today" link)
             var shortcuts_span = document.createElement('span');
             shortcuts_span.className = DateTimeShortcuts.shortCutsClass;
             inp.parentNode.insertBefore(shortcuts_span, inp.nextSibling);
@@ -262,7 +262,7 @@
             });
             quickElement(
                 'span', cal_link, '',
-                'class', 'date-icon',
+                'class', 'date-profile_icons',
                 'title', gettext('Choose a Date')
             );
             shortcuts_span.appendChild(document.createTextNode('\u00A0'));

@@ -1,18 +1,18 @@
 {% extends './base.html' %}
 {% load static %}
-{% block title %}SNS更新{% endblock %}
+{% block title %}SNS投稿・新規作成{% endblock %}
 {% block content %}
     <div class="col-lg-7 border order-2">
-        ▶Todo 更新 {{ sns.pk }}
+        ▶SNS 新規・投稿作成
         <hr/>
-        <form method="post" action="{% url 'sns:sns_update' sns.pk %}" enctype="multipart/form-data">
+        <form method="POST" action="{% url 'sns:sns_create' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form_non_field_errors }}
             <table class="table table-bordered table-sm table-striped">
                 {{ form.as_table }}
             </table>
-            <input type="submit" class="btn btn-sm btn-primary" value="更新"/>
-            <br/>
+            <button type="submit" class="btn btn-primary btn-sm">送信</button>
         </form>
+        <br/>
     </div>
 {% endblock %}

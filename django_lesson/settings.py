@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ('localhost', '127.0.0.1')
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -80,6 +80,7 @@ WSGI_APPLICATION = 'django_lesson.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+# pip3 install psycopg2-binary
 
 DATABASES = {
     # 'default': {
@@ -187,7 +188,7 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
-        'main': {
+        'sns': {
             'handlers': ['file', 'console'],
             'level': 'DEBUG',
             'propagate': True,

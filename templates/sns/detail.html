@@ -25,6 +25,15 @@
                     <th>更新日</th>
                     <td> {{ sns.updated_at|date:"Y-m-j H:i:s" }}</td>
                 </tr>
-            </table>
+            </table><br/>
+
+        <div class="card" style="width: 18rem;">
+            <h6 class="card-title">【タイトル: {{ sns.title }}】{{ sns.updated_at|date:"Y-m-j" }}</h6>
+            <div class="card-body">
+                <p class="card-text">{{ sns.description }}</p>
+                <a href="#" class="badge bg-secondary">Link先</a>
+            </div>
+            <img src="/media/{{ sns.post_image }}" class="card-img-top" alt="'post-image"/>
         </div>
+</div>
 {% endblock %}
