@@ -1,4 +1,4 @@
-#
+# pip3 install django-debug-toolbar
 import logging
 
 from django.contrib import messages
@@ -13,7 +13,7 @@ from todo.models import Todo, Category
 logger = logging.getLogger(__name__)
 
 
-# @login_required
+# @login_required()
 class TodoIndexView(ListView):
     model = Todo
     template_name = 'todo/index.html'

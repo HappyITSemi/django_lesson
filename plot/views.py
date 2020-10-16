@@ -1,3 +1,12 @@
+#
+# pip list
+# pip3 install opencv-python
+# pip3 install opencv-contrib-python
+# pip3 install matplotlib
+# pip3 install scipy
+# pip3 install pillow
+# pip3 install django-imagekit
+
 import logging
 
 from django.contrib.auth.decorators import login_required
@@ -8,13 +17,6 @@ from django_lesson.settings import MEDIA_ROOT
 
 # logger = logging.getLogger(__name__)
 logger = logging.getLogger("log_file")
-
-
-# pip list
-# pip install opencv-python
-# pip install opencv-contrib-python
-# pip install matplotlib
-# pip install scipy
 
 
 def recognize_face(input_pic, output_pic):

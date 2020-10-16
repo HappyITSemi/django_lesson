@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ('localhost', '127.0.0.1')
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -197,7 +199,7 @@ LOGGING = {
     },
 }
 
-# pip install django-debug-toolbar
+# pip3 install django-debug-toolbar
 
 if DEBUG:
     def show_toolbar(request):
@@ -237,8 +239,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
 
-LOGIN_URL = 'account_login/'
-LOGIN_REDIRECT_URL = 'todo:todo_index'
+LOGIN_URL = 'auth/logout.html'
+LOGIN_REDIRECT_URL = '/todo/'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
@@ -246,3 +248,9 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 DEFAULT_FROM_EMAIL = 'admin@example.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'line': {
+        'SCOPE': ['profile','openid'],
+    }
+}

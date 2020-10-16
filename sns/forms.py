@@ -35,3 +35,8 @@ class SnsCommentForm(forms.ModelForm):
         comment = forms.CharField(label='コメント', max_length=128)
         comment.widget.attrs.update({'class': 'form-control'})
 
+        # def __init__(self, *args, **kwargs):
+        #     # Classの指定など
+        #     for field in self.fields.values():
+        #         field.widget.attrs['class'] = 'form-control'
+

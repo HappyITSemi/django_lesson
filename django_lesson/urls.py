@@ -2,7 +2,7 @@
 from django.conf.urls.static import static
 from django.shortcuts import render
 from django.urls import path, include
-
+from django.contrib import admin
 from django_lesson import settings
 
 
@@ -10,17 +10,19 @@ def home(request):
     if request.method == 'GET':
         msg = {'message': 'Hello there'}
         return render(request, 'index.html', msg)
+    # loginしていなかったら、login → (/auth/login)へリダイレクトする
 
 
 urlpatterns = [
-    path('', home, name="home"),
-    # path('admin/', admin.site.urls),
-    path('todo/', include('todo.urls')),
-    path('accounts/', include('allauth.urls')),
-    path('plot/', include('plot.urls')),
-    path('sns/', include('sns.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+                  path('home/', home, name="home"),
+                  path('admin/', admin.site.urls),
+                  path('todo/', include('todo.urls')),
+                  path('accounts/', include('allauth.urls')),
+                  path('plot/', include('plot.urls')),
+                  path('sns/', include('sns.urls')),
+                  path('auth/', include('allauth.urls')),
+                  path('', include('accounts.urls')),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

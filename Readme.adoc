@@ -32,7 +32,7 @@ image::static/images/django-cover.png[]
 |$ python -m django --version
 |バージョン確認：Pythonコンソールを起動して +
 
-|⑤仮想環境を作成、アクティベートする
+|⑤仮想環境を作成、アクティベートする(anacondaで実施する)
 |$ python3 -m venv venv +
  $ cd venv/bin +
  $ source ./activate
@@ -68,6 +68,8 @@ Djangoを選択、作成する。
 pip freeze # インストールソフト確認
 pip list -o # アップグレードすべきソフトの一覧
 pip install -U <ソフト> # ソフトウェアのアップグレード
+
+[] アプリのインストール・登録
 
 === Lesson-1 Todoアプリ開発
 == 作成画面
