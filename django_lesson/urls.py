@@ -1,4 +1,5 @@
 #
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.shortcuts import render
 from django.urls import path, include
@@ -20,8 +21,11 @@ urlpatterns = [
                   path('accounts/', include('allauth.urls')),
                   path('plot/', include('plot.urls')),
                   path('sns/', include('sns.urls')),
+                  path('sns_comment/', include('sns_comment.urls')),
                   path('auth/', include('allauth.urls')),
                   path('', include('accounts.urls')),
+                  url(r'^rest-auth/', include('rest_auth.urls')),
+                  url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

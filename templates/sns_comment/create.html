@@ -3,14 +3,14 @@
 {% block title %}SNS投稿・新規作成{% endblock %}
 {% block content %}
     <div class="col-lg-7 border order-2">
-        ▶SNS 新規・投稿作成
+        ▶SNS コメント作成<br/>
+        {{ me }} / {{ sns_title }} / {{ sns_description }}
         <hr/>
-        <form method="POST" action="{% url 'sns:sns_create' %}" enctype="multipart/form-data">
+        <form method="POST" action="{% url 'sns_comment:sns_comment_create' %}">
             {% csrf_token %}
             {{ form_non_field_errors }}
             <table class="table table-bordered table-sm table-striped">
                 {{ form.as_table }}
-                {{ sns_comment_form.as_p }}
             </table>
             <button type="submit" class="btn btn-primary btn-sm">送信</button>
         </form>

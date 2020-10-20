@@ -1729,7 +1729,7 @@
                     // If no nodeType, this is expected to be an array
                     while ((node = elem[i++])) {
 
-                        // Do not traverse comment nodes
+                        // Do not traverse sns_comment nodes
                         ret += getText(node);
                     }
                 } else if (nodeType === 1 || nodeType === 9 || nodeType === 11) {
@@ -1749,7 +1749,7 @@
                     return elem.nodeValue;
                 }
 
-                // Do not include comment or processing instruction nodes
+                // Do not include sns_comment or processing instruction nodes
 
                 return ret;
             };
@@ -2209,7 +2209,7 @@
 
                         // http://www.w3.org/TR/selectors/#empty-pseudo
                         // :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
-                        //   but not by others (comment: 8; processing instruction: 7; etc.)
+                        //   but not by others (sns_comment: 8; processing instruction: 7; etc.)
                         // nodeType < 6 works because attributes (2) do not appear as children
                         for (elem = elem.firstChild; elem; elem = elem.nextSibling) {
                             if (elem.nodeType < 6) {
@@ -6884,7 +6884,7 @@
         // Get and set the style property on a DOM Node
         style: function (elem, name, value, extra) {
 
-            // Don't set styles on text and comment nodes
+            // Don't set styles on text and sns_comment nodes
             if (!elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style) {
                 return;
             }
@@ -7987,7 +7987,7 @@
             var ret, hooks,
                 nType = elem.nodeType;
 
-            // Don't get/set attributes on text, comment and attribute nodes
+            // Don't get/set attributes on text, sns_comment and attribute nodes
             if (nType === 3 || nType === 8 || nType === 2) {
                 return;
             }
@@ -8117,7 +8117,7 @@
             var ret, hooks,
                 nType = elem.nodeType;
 
-            // Don't get/set properties on text, comment and attribute nodes
+            // Don't get/set properties on text, sns_comment and attribute nodes
             if (nType === 3 || nType === 8 || nType === 2) {
                 return;
             }
@@ -8615,7 +8615,7 @@
 
             cur = lastElement = tmp = elem = elem || document;
 
-            // Don't do events on text and comment nodes
+            // Don't do events on text and sns_comment nodes
             if (elem.nodeType === 3 || elem.nodeType === 8) {
                 return;
             }
@@ -9011,7 +9011,7 @@
 	 */
         transports = {},
 
-        // Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
+        // Avoid sns_comment-prolog char sequence (#10098); must appease lint and evade compression
         allTypes = "*/".concat("*"),
 
         // Anchor tag for parsing the document origin
@@ -10825,7 +10825,7 @@
     };
 
 // Expose jQuery and $ identifiers, even in AMD
-// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
+// (#7102#sns_comment:10, https://github.com/jquery/jquery/pull/557)
 // and CommonJS for browser emulators (#13566)
     if (typeof noGlobal === "undefined") {
         window.jQuery = window.$ = jQuery;

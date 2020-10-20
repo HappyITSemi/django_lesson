@@ -3,15 +3,20 @@
 {% block title %}SNS投稿・新規作成{% endblock %}
 {% block content %}
     <div class="col-lg-7 border order-2">
-        ▶SNS 新規・投稿作成
+        ▶SNS Mention-Comment
         <hr/>
-        <form method="POST" action="{% url 'sns:sns_create' %}" enctype="multipart/form-data">
+        <form method="POST" action="{% url 'sns:sns_comment' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form_non_field_errors }}
             <table class="table table-bordered table-sm table-striped">
                 {{ form.as_table }}
             </table>
-            <button type="submit" class="btn btn-primary btn-sm">送信</button>
+            <table class="table table-bordered table-sm table-striped">
+            {% for form in inlines %}
+                {{ form.as_table }}
+            {% endfor %}
+            </table>
+            <button type="submit" class="btn btn-primary btn-sm"> 投稿 </button>
         </form>
         <br/>
     </div>

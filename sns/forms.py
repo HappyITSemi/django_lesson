@@ -1,7 +1,8 @@
 # sns
 from django import forms
 
-from sns.models import Sns, SnsComment
+from sns.models import Sns
+from sns_comment.models import SnsComment
 
 
 class SnsForm(forms.ModelForm):
@@ -27,16 +28,8 @@ class SnsForm(forms.ModelForm):
         return title
 
 
-class SnsCommentForm(forms.ModelForm):
-    class Meta:
-        model = SnsComment
-        fields = ('sns', 'comment')
-
-        comment = forms.CharField(label='コメント', max_length=128)
-        comment.widget.attrs.update({'class': 'form-control'})
-
-        # def __init__(self, *args, **kwargs):
-        #     # Classの指定など
-        #     for field in self.fields.values():
-        #         field.widget.attrs['class'] = 'form-control'
+# CommentFormset = forms.inlineformset_factory(
+#     Sns, SnsComment, fields='__all__',
+#     extra=1, max_num=1, can_delete=False
+# )
 

@@ -1,4 +1,5 @@
 # pip3 install django-debug-toolbar
+# https://django-extra-views.readthedocs.io/en/latest/index.html
 import logging
 
 from django.contrib import messages
@@ -6,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView, TemplateView
+from django.views.generic.edit import ModelFormMixin
 
-from todo.forms import TodoForm
+from todo.forms import TodoForm, CategoryForm
 from todo.models import Todo, Category
 
 logger = logging.getLogger(__name__)
@@ -18,7 +20,7 @@ class TodoIndexView(ListView):
     model = Todo
     template_name = 'todo/index.html'
     paginate_by = 3
-    logger.info('-- todo view index ---')
+    # success_url = reverse_lazy('todo:todo_index')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()

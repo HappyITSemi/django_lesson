@@ -1,22 +1,61 @@
 import logging
 
 from django.contrib import messages
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from extra_views import InlineFormSet, InlineFormSetFactory, CreateWithInlinesView
 
-from sns import forms
-from sns.forms import SnsForm, SnsCommentForm
-from sns.models import Sns, SnsComment
+from sns.forms import SnsForm
+from sns.models import Sns
+from sns_comment.forms import SnsCommentForm
+from sns_comment.models import SnsComment
 
 logger = logging.getLogger(__name__)
+
+
+def add_comment(request):
+    form = SnsForm(request.POST or None)
+    context = {'form': form}
+    # post
+    # if request.method == 'POST' and form.is_valid():
+    #     # sns = form.save(commit=False)
+    #     # comment_formset = CommentFormset(request.POST, files=request.FILES, instance=sns)
+    #     comment_formset = CommentFormset(request.POST, instance=sns)
+    #     if comment_formset.is_valid().is_valid():
+    #         # sns.save()
+    #         comment_formset.save()
+    #         return redirect('sns:sns_index')
+    #     else:
+    #         context['comment_formset'] = comment_formset
+    # # get
+    # else:
+    #     # 空のformsetをテンプレートへ渡す
+    #     context['comment_formset'] = CommentFormset()
+
+    return render(request, 'sns/comment.html', context)
+
+
+# 投稿の下にコメントのフォオーム
+class SnsCommentInlineFormSet(InlineFormSet):
+    model = SnsComment
+    fields = ('comment',)
+    on_delete = False
+
+
+class SnsCreateInlineFormSet(CreateWithInlinesView):
+    model = Sns
+    fields = ('title',)
+    inlines = [SnsCommentInlineFormSet, ]                   # {% for form in inlines %}
+    template_name = 'sns/sns_comment_formset.html'
+    success_url = 'sns:sns_index'
 
 
 class SnsIndexView(ListView):
     model = Sns
     template_name = 'sns/index.html'
     paginate_by = 5
-    logger.info('-- sns view index ---')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
@@ -29,44 +68,22 @@ class SnsIndexView(ListView):
         return object_list
 
 
-class SnsDetailView(DetailView, generic.edit.ModelFormMixin):
+class SnsDetailView(DetailView):
     model = Sns
-    form_class = SnsForm
-    logger.info('--- sns list view ---1-')
     template_name = 'sns/detail.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['me'] = self.request.user
-        # self.post(self, request, *args, **kwargs)
-        context.update({
-            'sns_comment_form': forms.SnsCommentForm(**self.get_form_kwargs()),
-        })
+        self.request.session['sns_title'] = self.object.title
+        self.request.session['sns_description'] = self.object.description
         return context
-
-    # def post(self, request, *args, **kwargs):
-    #
-    #     if 'button_comment_post' in request.POST:
-    #         comment_form = forms.SnsCommentForm(**self.get_form_kwargs())
-    #         logger.info('--- comment_form ---1-')
-    #         logger.info(comment_form)
-    #         if comment_form.is_valid():
-    #             comment_query = comment_form.save(commit=False)
-    #             comment_query.pk = SnsComment.objects.get(pk=self.kwargs['pk'])
-    #             comment_query.save()
-    #             return self.form_valid(comment_form)
-    #         else:
-    #             # self.object = self.get_object()
-    #             return self.form_invalid(comment_form)
-    #     else:
-    #         return
 
 
 class SnsCreateView(CreateView):
     model = Sns
     form_class = SnsForm
     template_name = "sns/create.html"
-    logger.info('--- sns create view ---1-')
     success_url = reverse_lazy('sns:sns_index')
 
     def form_valid(self, form):
@@ -88,12 +105,12 @@ class SnsCommentView(DetailView, generic.edit.ModelFormMixin):
     fields = ()
     form_sns = SnsForm
     form_comment = SnsCommentForm
-    template_name = 'sns/create_comment.html'
+    template_name = 'sns/sns_comment_formset.html'
 
     def post(self, request):
         post_data = request.POST or None
         post_form = self.form_sns(post_data, prefix='post')
-        comment_form = self.form_comment(post_data, prefix='comment')
+        comment_form = self.form_comment(post_data, prefix='sns_comment')
         context = self.get_context_data(post_form=post_form, comment_form=comment_form)
         if post_form.is_valid():
             self.form_save(post_form)
@@ -120,12 +137,6 @@ class SnsCommentView(DetailView, generic.edit.ModelFormMixin):
         # object_list = Sns.objects.filter(user=self.request.user).order_by('-sns.pk').all()
         return object_list
 
-    # def get_context_data(self, **kwargs):
-    #     context = CreateView.get_context_data(self, **kwargs)
-    #     form_comment = self.form_comment(self.request.GET or None)
-    #     context.update({'form_comment': form_comment})
-    #     return context
-
 
 class SnsUpdateView(UpdateView):
     model = Sns
@@ -146,3 +157,6 @@ class SnsDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, "SNSを削除しました。")
         return super().delete(request, *args, **kwargs)
+
+
+

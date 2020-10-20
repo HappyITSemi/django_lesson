@@ -38,6 +38,6 @@ class Todo(models.Model):
         if not self.id:
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
-        # me = self.request.user
+        # todo.me = self.request.user
         return super(Todo, self).save(*args, **kwargs)
 

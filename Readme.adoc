@@ -80,3 +80,6 @@ image::static/images/画面遷移図.png[]
 image::static/images/django-table.png[]
 == テーブル一覧
 image::static/images/django_all_tables.png[]
+
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate

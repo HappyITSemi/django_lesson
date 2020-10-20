@@ -1,0 +1,7 @@
+#
+# python3 manage.py startapp sns_comment
+#
+comment    text                     not null,
+    created_at timestamp with time zone not null,
+    updated_at timestamp with time zone not null,
+    iam_id     integer                  not null

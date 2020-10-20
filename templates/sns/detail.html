@@ -3,29 +3,33 @@
 {% block title %}SNS詳細{% endblock %}
 {% block content %}
     <div class="col-lg-7 border order-2">
-            ▶Todo詳細表示
-            <table class="table table-striped table-hover table-bordered">
-                <tr>
-                    <th>id</th>
-                    <td>{{ sns.pk }}</td>
-                </tr>
-                <tr>
-                    <th>タイトル</th>
-                    <td>{{ sns.title }}</td>
-                </tr>
-                <tr>
-                    <th>投稿内容</th>
-                    <td>{{ sns.description }}</td>
-                </tr>
-                <tr>
-                    <th>作成日</th>
-                    <td> {{ sns.created_at|date:"Y-m-j H:i:s" }}</td>
-                </tr>
-                <tr>
-                    <th>更新日</th>
-                    <td> {{ sns.updated_at|date:"Y-m-j H:i:s" }}</td>
-                </tr>
-            </table><br/>
+        ▶Todo詳細表示<br/>
+        me=: {{ me }}/{{ me.id }}<br/>
+        sns=:{{ sns }}>/{{ sns.id }}/{{ sns.title }}<br/>
+        comment:{{ sns.snscomment_set }}
+        <table class="table table-striped table-hover table-bordered">
+            <tr>
+                <th>id</th>
+                <td>{{ sns.pk }}</td>
+            </tr>
+            <tr>
+                <th>タイトル</th>
+                <td>{{ sns.title }}</td>
+            </tr>
+            <tr>
+                <th>投稿内容</th>
+                <td>{{ sns.description }}</td>
+            </tr>
+            <tr>
+                <th>作成日</th>
+                <td> {{ sns.created_at|date:"Y-m-j H:i:s" }}</td>
+            </tr>
+            <tr>
+                <th>更新日</th>
+                <td> {{ sns.updated_at|date:"Y-m-j H:i:s" }}</td>
+            </tr>
+        </table>
+        <br/>
 
         <div class="card" style="width: 18rem;">
             <h6 class="card-title">【タイトル: {{ sns.title }}】{{ sns.updated_at|date:"Y-m-j" }}</h6>
@@ -36,14 +40,9 @@
             <img src="/media/{{ sns.post_image }}" class="card-img-top" alt="'post-image"/>
         </div>
         <div>
-            <form action="" method="POST" name="sns_comment_form" id="sns_comment_form_id">
-            {% csrf_token %}
-            {{ sns_comment_form.non_field_errors }}
-            <div class="form-group">
-              {{ sns_comment_form.as_table }}
-              <button type="submit" class="btn btn-primary" name="button_sns_comment_post"> 変更 </button>
-            </div>
-          </form>
+            <a role="button" class="btn  btn-sm btn-outline-primary"
+               href="{% url 'sns_comment:sns_comment_create' %}"> コメントする </a>
         </div>
-</div>
+        <div> Form </div>
+    </div>
 {% endblock %}

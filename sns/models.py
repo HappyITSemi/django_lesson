@@ -9,6 +9,7 @@ from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
 from accounts.models import CustomUser
+from sns_comment.models import SnsComment
 
 
 class Sns(models.Model):  # sns_mention
@@ -25,6 +26,7 @@ class Sns(models.Model):  # sns_mention
         upload_to='images/', verbose_name='投稿画像',
         validators=[FileExtensionValidator(['png', ])],
         blank=True, null=True)
+    comments = models.ForeignKey(SnsComment, verbose_name='コメント', on_delete=models.PROTECT, default=1)
     like_count = models.IntegerField(verbose_name='いいね数', default=0, null=False)
     comment_count = models.IntegerField(verbose_name='コメント数', default=0, null=False)
 
@@ -38,7 +40,6 @@ class Sns(models.Model):  # sns_mention
         if not self.id:
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
-        # self.user = self.request.user
         return super(Sns, self).save(*args, **kwargs)
 
 
@@ -62,17 +63,4 @@ class LikeOn(models.Model):
     sns = models.ManyToManyField(Sns, verbose_name='メンション')
     like_up = models.BooleanField(default=False)
 
-
-class SnsComment(models.Model):
-    class Meta:
-        managed = True
-        db_table = 'sns_comment'
-
-    # mention_id
-    iam = models.ForeignKey(CustomUser, related_name='comments', on_delete=models.CASCADE)  # it's me
-    sns = models.ForeignKey(Sns, on_delete=models.CASCADE)  # mention_id
-    comment = models.TextField(verbose_name='コメント')
-
-    created_at = models.DateTimeField(default=timezone.now, verbose_name='登録日時')
-    updated_at = models.DateTimeField(default=timezone.now, verbose_name='更新日時')
 

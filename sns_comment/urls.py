@@ -5,10 +5,9 @@ from sns_comment import views
 app_name = 'sns_comment'
 
 urlpatterns = [
-    path('', views.SnsCommentIndexView.as_view(), name='sns_index'),
-    path('detail/<int:pk>', views.SnsDetailView.as_view(), name='sns_detail'),
-    path('create/', views.SnsCreateView.as_view(), name='sns_create'),
-    path('update/<int:pk>', views.SnsUpdateView.as_view(), name='sns_update'),
-    path('delete/<int:pk>', views.SnsDeleteView.as_view(), name='sns_delete'),
-    path('comment/<int:id>', views.SnsCommentView.as_view(), name='sns_comment'),
+    path('', views.SnsCommentIndexView.as_view(), name='sns_comment_index'),
+    path('detail/<int:pk>', views.SnsCommentDetailView.as_view(), name='sns_comment_detail'),
+    path('create/', views.SnsCommentCreateView.as_view(), name='sns_comment_create'),
+    path('update/<int:pk>', views.SnsCommentUpdateView.as_view(), name='sns_comment_update'),
+    path('delete/<int:pk>', views.SnsCommentDeleteView.as_view(), name='sns_comment_delete'),
     ]

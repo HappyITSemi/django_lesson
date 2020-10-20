@@ -6,10 +6,12 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+# pip3 install django-filter
+# pip3 install django-extra-views
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import django_filters
 from django.contrib import messages
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,11 +42,17 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'plot.apps.PlotConfig',
     'sns.apps.SnsConfig',
+    'sns_comment.apps.SnsCommentConfig',
+    'extra_views',
 
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
 
     # 'allauth.socialaccount.providers.google',
 ]
@@ -210,11 +218,20 @@ if DEBUG:
     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
     DEBUG_TOOLBAR_CONFIG = {'SHOW_TOOLBAR_CALLBACK': show_toolbar, }
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-#     'PAGE_SIZE': 10
-# }
-
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',  #
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 
 MESSAGE_TAGS = {
     messages.ERROR: 'alert alert-danger',
@@ -251,6 +268,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SOCIALACCOUNT_PROVIDERS = {
     'line': {
-        'SCOPE': ['profile','openid'],
+        'SCOPE': ['profile', 'openid'],
     }
 }

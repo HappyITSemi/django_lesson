@@ -1,3 +1,6 @@
+# memo
+# pip3 install django-rest-auth
+#
 
 """
 accounts signup/ [name='account_signup']
