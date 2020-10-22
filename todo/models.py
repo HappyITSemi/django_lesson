@@ -40,4 +40,3 @@ class Todo(models.Model):
         self.updated_at = timezone.now()
         # todo.me = self.request.user
         return super(Todo, self).save(*args, **kwargs)
-

@@ -5,4 +5,3 @@ from todo.models import Todo, Category
 
 admin.site.register(Todo)
 admin.site.register(Category)
-

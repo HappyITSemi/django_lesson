@@ -39,17 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'todo.apps.TodoConfig',
-    'accounts.apps.AccountsConfig',
     'plot.apps.PlotConfig',
     'sns.apps.SnsConfig',
     'sns_comment.apps.SnsCommentConfig',
     'extra_views',
 
+    'accounts.apps.AccountsConfig',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
+    'rest_framework',
+    'snippets.apps.SnippetsConfig',
     'rest_framework.authtoken',
     'rest_auth',
     'rest_auth.registration',
@@ -212,7 +214,6 @@ LOGGING = {
 if DEBUG:
     def show_toolbar(request):
         return True
-
 
     INSTALLED_APPS += ('debug_toolbar',)
     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)

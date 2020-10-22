@@ -11,4 +11,4 @@ urlpatterns = [
     path('update/<int:pk>', views.SnsUpdateView.as_view(), name='sns_update'),
     path('delete/<int:pk>', views.SnsDeleteView.as_view(), name='sns_delete'),
     path('comment/', views.add_comment, name='sns_comment'),
-    ]
+]

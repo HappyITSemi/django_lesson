@@ -18,6 +18,7 @@ urlpatterns = [
                   path('home/', home, name="home"),
                   path('admin/', admin.site.urls),
                   path('todo/', include('todo.urls')),
+                  # path('accounts/', include('django.contrib.auth.urls')),
                   path('accounts/', include('allauth.urls')),
                   path('plot/', include('plot.urls')),
                   path('sns/', include('sns.urls')),

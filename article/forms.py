@@ -1,12 +1,13 @@
-# sns
+#
 from django import forms
-from sns.models import Sns
+
+from article.models import Article
 
 
-class SnsForm(forms.ModelForm):
+class ArticleForm(forms.ModelForm):
     class Meta:
-        model = Sns
-        fields = ('title', 'description', 'post_image', 'me')
+        model = Article
+        fields = ('title', 'description', 'post_image', 'me', 'likes')
 
         title = forms.CharField(label='タイトル', max_length=32)
         description = forms.CharField(label='内容', max_length=128)  # models = TextField
@@ -25,7 +26,16 @@ class SnsForm(forms.ModelForm):
             raise forms.ValidationError('6文字以上入力してください。')
         return title
 
-# CommentFormset = forms.inlineformset_factory(
-#     Sns, SnsComment, fields='__all__',
-#     extra=1, max_num=1, can_delete=False
-# )
+    def clean_description(self):
+        description = self.cleaned_data.get('description')
+        if len(description) < 6:
+            raise forms.ValidationError('6文字以上入力してください。')
+        return description
+
+    def clean(self):
+        cleaned_data = super().clean()
+        title = cleaned_data.get('title')
+        description = cleaned_data.get('description')
+        if not (title or description):
+            raise forms.ValidationError("タイトルと記事を入力して下さい")
+        return cleaned_data

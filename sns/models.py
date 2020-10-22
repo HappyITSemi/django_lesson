@@ -8,6 +8,7 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
+
 from accounts.models import CustomUser
 from sns_comment.models import SnsComment
 
@@ -62,5 +63,3 @@ class LikeOn(models.Model):
 
     sns = models.ManyToManyField(Sns, verbose_name='メンション')
     like_up = models.BooleanField(default=False)
-
-

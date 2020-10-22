@@ -1,11 +1,11 @@
 import logging
 
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from extra_views import InlineFormSet, InlineFormSetFactory, CreateWithInlinesView
+from extra_views import InlineFormSet, CreateWithInlinesView
 
 from sns.forms import SnsForm
 from sns.models import Sns
@@ -47,7 +47,7 @@ class SnsCommentInlineFormSet(InlineFormSet):
 class SnsCreateInlineFormSet(CreateWithInlinesView):
     model = Sns
     fields = ('title',)
-    inlines = [SnsCommentInlineFormSet, ]                   # {% for form in inlines %}
+    inlines = [SnsCommentInlineFormSet, ]  # {% for form in inlines %}
     template_name = 'sns/sns_comment_formset.html'
     success_url = 'sns:sns_index'
 
@@ -157,6 +157,3 @@ class SnsDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, "SNSを削除しました。")
         return super().delete(request, *args, **kwargs)
-
-
-
