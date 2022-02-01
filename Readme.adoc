@@ -70,6 +70,8 @@ pip install -U <ソフト> # ソフトウェアのアップグレード
 == 作成画面
 image::static/images/django_start_画面.png[]
 == 画面遷移図
+(*)プログラム上では、Update→Detailに変更しました。 
+
 image::static/images/画面遷移図.png[]
 == Todoテーブル
 image::static/images/django-table.png[]
